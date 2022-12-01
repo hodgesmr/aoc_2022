@@ -4,12 +4,11 @@ from utils import timed, get_input_lines
 
 # Loop over all the calories
 # When we hit a blank value, sum, and then compare to a running max
-def part_1():
-    calories = get_input_lines()
+def part_1(input_lines):
     max_calories = 0
     current_elf_total = 0
 
-    for c in calories:
+    for c in input_lines:
         if c and c != "\n":
             current_elf_total += int(c)
         else:
@@ -23,12 +22,11 @@ def part_1():
 # Loop over all the calories
 # When we hit a blank value, sum, and push into a heap
 # Then pop thrice off the heap, and sum that
-def part_2():
-    calories = get_input_lines()
+def part_2(input_lines):
     elf_calorie_heap = []
     current_elf_total = 0
 
-    for c in calories:
+    for c in input_lines:
         if c and c != "\n":
             current_elf_total += int(c)
         else:
@@ -44,5 +42,5 @@ def part_2():
     return top_3_sum
 
 
-timed(part_1)
-timed(part_2)
+timed(part_1, [get_input_lines()])
+timed(part_2, [get_input_lines()])

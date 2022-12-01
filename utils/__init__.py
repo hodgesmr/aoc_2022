@@ -3,12 +3,11 @@ import os
 import time
 
 
-def timed(func):
+def timed(func, args):
     t_start = time.perf_counter()
-    result = func()
+    result = func(*args)
     t_end = time.perf_counter()
-    print(f"{func.__name__} ({(t_end - t_start):0.6f} seconds) : {result}")
-
+    print(f"{func.__name__} : {result} ({(t_end*1000 - t_start*1000):0.4f}ms)")
 
 
 # I know this is gross but leave me alone
