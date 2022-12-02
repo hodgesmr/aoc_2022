@@ -18,6 +18,6 @@ def get_input_lines():
     puzzle_data_lines = []
     with open(data_path, "r") as puzzle_data_file:
         for line in puzzle_data_file:
-            puzzle_data_lines.append(line)
+            puzzle_data_lines.append(line.strip())
 
     return puzzle_data_lines
