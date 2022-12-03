@@ -18,7 +18,6 @@ def part_1(input):
             ascii_offset = 38
 
         priority = ord(common) - ascii_offset
-
         priority_sum += priority
 
     return priority_sum
@@ -35,7 +34,7 @@ def part_2(input):
     for rucksack in input:
         current_group.append(set(rucksack))
         if len(current_group) == 3:
-            common = (current_group[0] & current_group[1] & current_group[2]).pop()
+            common = set.intersection(*current_group).pop()
             if common in string.ascii_lowercase:
                 ascii_offset = 96
             else:
