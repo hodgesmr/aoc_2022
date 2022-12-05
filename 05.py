@@ -6,18 +6,15 @@ from utils import get_input_lines, timed
 
 def stacks_and_moves_from_input(input):
     stacks = [deque() for i in range(9)]  # we've got 9 stacks
-    parsing_stack = True
     for i, line in enumerate(input):
         if line == "" :  # Once we hit a blank line, we're done parsing the stacks
-            parsing_stack = False
-        elif parsing_stack:
+            return stacks, input[i+1:]
+        else:
             stacks_at_level = [line[i+1:i+2] for i in range(0, len(line), 4)]  # list of letters from bracket-y string
             for i, stack_item in enumerate(stacks_at_level):
                 if stack_item != " ":
                     stacks[i].appendleft(stack_item)  # appendleft because we're building top down
-        else:
-            remaining_input = input[i:]
-            return stacks, remaining_input
+
 
 
 # Get our ascii stacks as python deques
