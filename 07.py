@@ -81,9 +81,10 @@ def part_1(input):
     visited = set()
     visited_threshold = set()
     target = 100000
+    op = operator.lt
 
     find_directories_meeting_threshold(
-        visited, visited_threshold, operator.lt, target, file_system
+        visited, visited_threshold, op, target, file_system
     )
 
     return sum(v.total_weight for v in visited_threshold)
@@ -103,9 +104,10 @@ def part_2(input):
 
     visited = set()
     visited_threshold = set()
+    op = operator.ge
 
     find_directories_meeting_threshold(
-        visited, visited_threshold, operator.ge, to_find, file_system
+        visited, visited_threshold, op, to_find, file_system
     )
 
     return min(v.total_weight for v in visited_threshold)
