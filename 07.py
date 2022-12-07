@@ -32,11 +32,13 @@ def build_file_system(input):
                     cwd.pop()
                 else:
                     if file_system:  # We're going down a dir
-                        next_subdir = next(  # Find the child Node that matches the typed name
-                            (
-                                subdir
-                                for subdir in file_system.children
-                                if subdir.name == dir_name
+                        next_subdir = (
+                            next(  # Find the child Node that matches the typed name
+                                (
+                                    subdir
+                                    for subdir in file_system.children
+                                    if subdir.name == dir_name
+                                )
                             )
                         )
                     else:  # This only hits once when we initialize '/'
@@ -63,13 +65,14 @@ def build_file_system(input):
 def find_directories_meeting_threshold(visited, visited_threshold, op, threshold, node):
     if node not in visited:
         visited.add(node)  # track everything we've seen
-        if node.children and op(node.total_weight, threshold):  # it has children, it's a dir
+        if node.children and op(
+            node.total_weight, threshold
+        ):  # it has children, it's a dir
             visited_threshold.add(node)  # track everything that meets our threshold
         for child in node.children:
             find_directories_meeting_threshold(  # ✨ Recursion ✨
                 visited, visited_threshold, op, threshold, child
             )
-
 
 
 # Build the file system
