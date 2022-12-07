@@ -43,7 +43,7 @@ def build_file_system(input):
                         next_subdir = Node(dir_name)
                     cwd.append(next_subdir)  # Add the cd'd dir to the stack
 
-                file_system = cwd[-1]  # Orient our "root" at the top of the tack
+                file_system = cwd[-1]  # Orient our "root" at the top of the stack
         else:  # This is the output of `ls`
             try:  # Add a file child if the first value is a file size
                 file_size = int(line_parts[0])
