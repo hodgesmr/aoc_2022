@@ -12,6 +12,7 @@ def part_1(input):
     for i in range(1, len(grid) -1):  # loop over the internal rows
         for j in range(1, len(grid[0]) - 1):  # loop over the interal cols
 
+            # at least short-circuiting will save us from doing some of these walks
             if (all(grid[i][k] < grid[i][j] for k in range(j + 1, len(grid[i]))) or  # Check left
                 all(grid[i][k] < grid[i][j] for k in range(0, j)) or  # Check right
                 all(grid[k][j] < grid[i][j] for k in range(0, i)) or  # Check up
