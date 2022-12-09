@@ -6,7 +6,7 @@ import math
 class Knot():
     def __init__(self):
         self.location = (0, 0)
-        self.history = [self.location]
+        self.history = set({self.location})
 
     def move_euclidean(self, direction):
         # parse the input
@@ -20,17 +20,14 @@ class Knot():
         else:
             c_delta = -1
 
-        # some of this cruft is because tuples are immutable
-        new_location = [0, 0]
-        for i in range(c_index-1, c_index+1):
-            if i == c_index:
-                new_location[i] = self.location[c_index] + c_delta
-            else:
-                new_location[i] = self.location[(c_index-1)]
+        if c_index == 0:
+            new_location = (self.location[0]+c_delta, self.location[1])
+        else:
+            new_location = (self.location[0], self.location[1]+c_delta)
 
         # update location and add to history
-        self.location = tuple(new_location)
-        self.history.append(self.location)
+        self.location = new_location
+        self.history.add(self.location)
 
 
     def move_free(self, other_knot):
@@ -52,7 +49,7 @@ class Knot():
             y -= 1
 
         self.location = (x, y)
-        self.history.append(self.location)
+        self.history.add(self.location)
         
 
     def touching(self, other_knot):
@@ -73,7 +70,7 @@ def part_1(input):
             if not tail.touching(head):  # update tail
                 tail.move_free(head)
 
-    return len(set(tail.history))  # return the unique coords in the history
+    return len(tail.history)  # return the unique coords in the history
         
 
 def part_2(input):
@@ -89,7 +86,7 @@ def part_2(input):
                 if not knot.touching(leader):
                     knot.move_free(leader)
 
-    return len(set(knots[-1].history))  # return the unique coords in the history
+    return len(knots[-1].history)  # return the unique coords in the history
 
 
 timed(part_1, [get_input_lines()])
