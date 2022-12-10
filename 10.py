@@ -85,16 +85,6 @@ def part_2(input):
     for row in crt:
         print("".join(row))
 
-            
-
-            
-
-    # for instruction in input:
-    #     if instruction == 'noop':
-    #         cycle += 1
-    #         x, p, cycle = pixel(x, delta, cycle)
-        
-
 
 timed(part_1, [get_input_lines()])
 timed(part_2, [get_input_lines()])
